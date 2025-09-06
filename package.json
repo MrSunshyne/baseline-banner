@@ -11,6 +11,8 @@
     "lint": "pnpm -r lint",
     "test": "pnpm -r test",
     "generate-types": "cd packages/core && node scripts/generate-feature-types.js",
+    "pack:local": "pnpm build && cd packages/core && npm pack && cd ../vue && cp package.json package.json.bak && sed 's/\"workspace:\\*\"/\"0.1.0\"/' package.json > package.json.tmp && mv package.json.tmp package.json && npm pack && mv package.json.bak package.json",
+    "pack:clean": "rm -f packages/core/*.tgz packages/vue/*.tgz",
     "changeset": "changeset",
     "version": "changeset version",
     "release": "pnpm build && changeset publish"
