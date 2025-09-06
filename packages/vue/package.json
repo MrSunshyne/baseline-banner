@@ -1,0 +1,47 @@
+{
+  "name": "@baseline-banner/vue",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Vue component for checking web feature baseline compatibility",
+  "keywords": ["vue", "baseline", "web-features", "compatibility", "browser-support", "component"],
+  "author": "Sandeep Ramgolam",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./dist/index.css": "./dist/index.css",
+    "./style.css": "./dist/index.css"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "vite build && vue-tsc --emitDeclarationOnly --outDir dist",
+    "dev": "vite build --watch",
+    "type-check": "vue-tsc --noEmit",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@baseline-banner/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.3.0",
+    "@vitejs/plugin-vue": "^5.2.0",
+    "typescript": "^5.6.3",
+    "vite": "^6.0.0",
+    "vite-plugin-dts": "^4.3.0",
+    "vitest": "^2.1.0",
+    "vue": "^3.5.13",
+    "vue-tsc": "^2.1.10"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  }
+}
