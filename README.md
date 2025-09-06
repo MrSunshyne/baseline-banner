@@ -47,6 +47,9 @@ function App() {
 
 ## 🧪 Examples
 
+<img width="1367" height="881" alt="image" src="https://github.com/user-attachments/assets/40dd750e-946e-4048-a06e-02a088e5bc7d" />
+
+
 Interactive examples are available in the [`examples/`](./examples) directory:
 
 - **[Vue 3 Example](./examples/vue3)** - http://localhost:5174
