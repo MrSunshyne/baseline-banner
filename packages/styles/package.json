@@ -1,0 +1,34 @@
+{
+  "name": "@baseline-banner/styles",
+  "version": "1.0.0",
+  "description": "Shared styles for baseline-banner components across frameworks",
+  "main": "./dist/index.css",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "css",
+    "styles",
+    "baseline",
+    "web-platform",
+    "compatibility"
+  ],
+  "author": "Sandeep Ramgolam",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": "./dist/index.css",
+    "./index.css": "./dist/index.css"
+  },
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
+  }
+}

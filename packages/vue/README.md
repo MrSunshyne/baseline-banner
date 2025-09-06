@@ -5,7 +5,7 @@ Vue 3 component for checking web feature baseline compatibility.
 ## Installation
 
 ```bash
-npm install @baseline-banner/vue
+npm install @baseline-banner/vue @baseline-banner/styles
 ```
 
 ## Usage

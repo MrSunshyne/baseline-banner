@@ -39,7 +39,8 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@baseline-banner/core": "workspace:*"
+    "@baseline-banner/core": "workspace:*",
+    "@baseline-banner/styles": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^22.3.0",
