@@ -1,129 +1,171 @@
-# Baseline Banner 🎯
+# 🎯 Baseline Banner
 
-A framework-agnostic library for checking web feature baseline compatibility. Built with TypeScript and designed to support multiple frontend frameworks.
+A set of framework-agnostic components for displaying CSS feature baseline compatibility information using [MDN's web-features data](https://github.com/web-platform-dx/web-features).
 
-## Packages
+## 📦 Packages
 
-- **[@baseline-banner/core](./packages/core)** - Core TypeScript library with API logic
-- **[@baseline-banner/vue](./packages/vue)** - Vue 3 component wrapper
+| Package | Description | Version |
+|---------|-------------|---------|
+| [`@baseline-banner/core`](./packages/core) | Core API and TypeScript types | ![npm](https://img.shields.io/npm/v/@baseline-banner/core) |
+| [`@baseline-banner/styles`](./packages/styles) | 🎨 Shared CSS styles for all frameworks | ![npm](https://img.shields.io/npm/v/@baseline-banner/styles) |
+| [`@baseline-banner/vue`](./packages/vue) | Vue 3 component | ![npm](https://img.shields.io/npm/v/@baseline-banner/vue) |
+| [`@baseline-banner/react`](./packages/react) | React component | ![npm](https://img.shields.io/npm/v/@baseline-banner/react) |
 
-## Features
-
-- ✅ **1080+ Web Features** - Complete TypeScript intellisense for all web platform features
-- 🌐 **Real-time Data** - Uses the official Web Platform Dashboard API
-- 🎯 **Framework Agnostic** - Core logic can be wrapped for any framework
-- 📦 **Tree Shakeable** - Only bundle what you use
-- 🔒 **Type Safe** - Full TypeScript support with explicit union types
-
-## Installation & Usage
+## 🚀 Quick Start
 
 ### Vue 3
 
 ```bash
-npm install @baseline-banner/vue
+npm install @baseline-banner/vue @baseline-banner/styles
 ```
 
 ```vue
-<template>
-  <div>
-    <!-- Single feature -->
-    <BaselineChecker :features="['flexbox']" />
-    
-    <!-- Multiple features -->
-    <BaselineChecker :features="['grid', 'css-container-queries', 'css-nesting']" />
-  </div>
-</template>
-
 <script setup>
 import { BaselineChecker } from '@baseline-banner/vue'
-// Import styles
-import '@baseline-banner/vue/style.css'
+import '@baseline-banner/styles'
 </script>
+
+<template>
+  <BaselineChecker feature-name="container-queries" />
+</template>
 ```
 
-### Core Library (Framework Agnostic)
+### React
 
 ```bash
-npm install @baseline-banner/core
+npm install @baseline-banner/react @baseline-banner/styles
 ```
 
-```typescript
-import { fetchBaselineData, getBaselineStatus } from '@baseline-banner/core'
+```tsx
+import { BaselineChecker } from '@baseline-banner/react'
+import '@baseline-banner/styles'
 
-const feature = await fetchBaselineData('flexbox')
-const status = getBaselineStatus(feature)
-console.log(status.message) // "Widely available"
+function App() {
+  return <BaselineChecker featureName="container-queries" />
+}
 ```
 
-## Project Structure
+## 🧪 Examples
 
-```
-@baseline-banner/
-├── packages/
-│   ├── core/                 # Core TypeScript library
-│   │   ├── src/
-│   │   │   ├── api.ts       # API logic and types  
-│   │   │   ├── types.ts     # Generated feature IDs (1080+)
-│   │   │   └── index.ts     # Main exports
-│   │   └── package.json     # @baseline-banner/core
-│   │
-│   └── vue/                  # Vue 3 wrapper
-│       ├── src/
-│       │   ├── BaselineChecker.vue  # Main component
-│       │   └── index.ts     # Vue plugin exports  
-│       └── package.json     # @baseline-banner/vue
-│
-└── examples/
-    └── vue3/                 # Vue 3 example with TypeScript & Vite
-        ├── src/
-        │   ├── components/   # Interactive demo components
-        │   ├── App.vue      # Main application
-        │   └── main.ts      # Entry point
-        └── package.json     # Example dependencies
-```
+Interactive examples are available in the [`examples/`](./examples) directory:
 
-## Development
+- **[Vue 3 Example](./examples/vue3)** - http://localhost:5174
+- **[React Example](./examples/react)** - http://localhost:5176
 
-This is a pnpm workspace monorepo. For detailed local development instructions, see [DEVELOPMENT.md](./DEVELOPMENT.md).
+## 🎨 Styling Strategy
 
-**Quick commands:**
+All packages use the centralized [`@baseline-banner/styles`](./packages/styles) package for consistent styling across frameworks:
+
+- ✅ **Consistent appearance** across Vue, React, and future frameworks
+- ✅ **Single source of truth** for all styling
+- ✅ **Easy customization** by overriding CSS classes
+- ✅ **Framework-agnostic** CSS that works everywhere
+
+## 📚 Framework Support
+
+| Framework | Package | Status |
+|-----------|---------|---------|
+| Vue 3 | `@baseline-banner/vue` | ✅ Available |
+| React | `@baseline-banner/react` | ✅ Available |
+| Svelte | `@baseline-banner/svelte` | 🔄 Planned |
+| Angular | `@baseline-banner/angular` | 🔄 Planned |
+
+## 🛠️ Development
+
+This is a monorepo managed with pnpm workspaces.
 
 ```bash
 # Install dependencies
 pnpm install
 
-# Build all packages  
+# Build all packages
 pnpm build
 
-# Generate fresh tarballs for local testing
-pnpm pack:local
+# Run all examples
+pnpm dev
 
-# Generate types from latest web-features
-pnpm generate-types
+# Run specific example
+cd examples/vue3 && pnpm dev
+cd examples/react && pnpm dev
 ```
 
-## Framework Support
+### Local Development Workflow
 
-- ✅ **Vue 3** - Available now
-- 🚧 **React** - Coming soon  
-- 🚧 **Svelte** - Planned
-- 🚧 **Angular** - Planned
-- 🚧 **Solid** - Planned
+For testing packages locally without publishing:
 
-Want to add support for your favorite framework? See [DEVELOPMENT.md](./DEVELOPMENT.md) and open an issue!
+```bash
+# Build packages
+pnpm build
 
-## Data Source
+# Create local tarballs
+pnpm pack:local
 
-This library uses the [Web Platform Dashboard](https://webstatus.dev/) API, which is maintained by the Chrome team and provides official baseline compatibility data as referenced in [web.dev baseline documentation](https://web.dev/articles/web-platform-dashboard-baseline).
+# Clean tarballs
+pnpm pack:clean
+```
 
-## 🎯 Examples
+## 🏗️ Architecture
 
-Live examples and demos are available in the [`examples/`](./examples/) directory:
+```
+packages/
+├── core/           # Core API logic & TypeScript types
+├── styles/         # Shared CSS for all frameworks
+├── vue/           # Vue 3 component wrapper
+├── react/         # React component wrapper
+└── examples/
+    ├── vue3/      # Vue 3 interactive demo
+    └── react/     # React interactive demo
+```
 
-- **[Vue 3](./examples/vue3/)** - Complete Vue 3 example with TypeScript, interactive demos, and modern CSS features showcase
+### Design Principles
 
-More framework examples coming soon (React, Angular, Svelte)!
+1. **Framework Consistency**: Identical API across all frameworks
+2. **Centralized Styles**: Single CSS package for visual consistency
+3. **TypeScript First**: Full type safety everywhere
+4. **Developer Experience**: Simple imports, clear documentation
+5. **Performance**: Minimal bundle size, efficient rendering
 
-## License
+## 🎯 Features
+
+- **Real-time Data** - Fetches latest compatibility info from MDN
+- **Baseline Status** - Shows high/low/limited/unknown baseline status
+- **Feature Details** - Displays feature descriptions and availability dates
+- **Loading States** - Proper loading and error handling
+- **TypeScript** - Full type safety and IntelliSense
+- **Responsive** - Works on all screen sizes
+- **Accessible** - Semantic HTML and proper ARIA attributes
+
+## 📖 Available Features
+
+Common feature IDs you can use:
+
+- `container-queries`
+- `css-grid`
+- `flexbox`
+- `css-transforms`
+- `web-components`
+- `css-custom-properties`
+- `css-subgrid`
+- `css-cascade-layers`
+- `css-has`
+- `css-color-mix`
+
+For a complete list, see the [web-features repository](https://github.com/web-platform-dx/web-features).
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## 📄 License
 
 MIT © [Sandeep Ramgolam](https://github.com/MrSunshyne)
+
+## 🔗 Links
+
+- [MDN Web Platform Features](https://github.com/web-platform-dx/web-features)
+- [Web Platform Baseline](https://web.dev/baseline/)
+- [Can I Use](https://caniuse.com)

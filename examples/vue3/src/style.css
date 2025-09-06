@@ -37,7 +37,7 @@ body {
   background: #fafafa;
 }
 
-.section h2 {
+.section > h2 {
   margin-top: 0;
   color: #cfcfcf;
   font-size: 1.5rem;
@@ -63,7 +63,7 @@ body {
   background: white;
 }
 
-.feature-card h3 {
+.feature-card > h3 {
   margin-top: 0;
   margin-bottom: 1rem;
   color: #cfcfcf;
@@ -71,7 +71,7 @@ body {
   font-weight: 600;
 }
 
-.feature-card p {
+.feature-card > p {
   margin-bottom: 1rem;
   color: #64748b;
   font-size: 0.9rem;
