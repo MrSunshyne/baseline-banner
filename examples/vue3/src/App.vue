@@ -19,6 +19,7 @@
         <BaselineChecker feature-name="flexbox" />
         <BaselineChecker feature-name="if" />
         <BaselineChecker feature-name="popover" />
+        <BaselineChecker feature-name="abs-sign" />
         
         <div class="code-block">
 &lt;BaselineChecker feature-name="flexbox" /&gt;

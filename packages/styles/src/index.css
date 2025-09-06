@@ -103,3 +103,12 @@
 .availability-date {
   margin-bottom: 0.25rem;
 }
+
+.debug {
+  background-color: #f1f5f9;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #64748b;
+}

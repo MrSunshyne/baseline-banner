@@ -1,8 +1,6 @@
 <template>
   <div class="baseline-checker">
-    <div v-if="pending" class="loading-message">
-      Loading feature data...
-    </div>
+    <div v-if="pending" class="loading-message">Loading compatibility data...</div>
     
     <div v-else-if="error || !feature" class="error-message">
       {{ error?.message || `Feature "${featureName}" not found` }}
@@ -21,12 +19,8 @@
       </p>
       
       <div v-if="baselineStatus.dates" class="availability-info">
-        <div v-if="baselineStatus.dates.availableSince" class="availability-date">
-          Available since: {{ formatDate(baselineStatus.dates.availableSince) }}
-        </div>
-        <div v-if="baselineStatus.dates.widelyAvailableSince" class="availability-date">
-          Widely available since: {{ formatDate(baselineStatus.dates.widelyAvailableSince) }}
-        </div>
+        <div v-if="baselineStatus.dates.availableSince" class="availability-date">Available since: {{ formatDate(baselineStatus.dates.availableSince) }}</div>
+        <div v-if="baselineStatus.dates.widelyAvailableSince" class="availability-date">Widely available since: {{ formatDate(baselineStatus.dates.widelyAvailableSince) }}</div>
       </div>
     </div>
   </div>
