@@ -71,7 +71,7 @@ export function getBaselineStatus(feature: WebPlatformFeature | null): BaselineS
     case 'widely':
       return {
         message: 'Widely available',
-        className: 'high',
+        className: 'widely',
         isAvailable: true,
         dates: {
           availableSince: feature.baseline?.low_date,
@@ -81,7 +81,7 @@ export function getBaselineStatus(feature: WebPlatformFeature | null): BaselineS
     case 'newly':
       return {
         message: 'Newly available',
-        className: 'low',
+        className: 'newly',
         isAvailable: true,
         dates: {
           availableSince: feature.baseline?.low_date

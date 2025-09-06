@@ -1,114 +1,156 @@
-.baseline-checker {
-  border: 1px solid #e2e8f0;
+/* Baseline Status Component - Inspired by web.dev design */
+.baseline-status {
+  display: inline-block;
+  border: 1px solid #e5e7eb;
   border-radius: 8px;
-  padding: 1rem;
-  margin: 1rem 0;
-  background: #f8fafc;
+  background: #ffffff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  max-width: 100%;
 }
 
-.error-message {
-  color: #ef4444;
-  font-weight: 500;
-  text-align: center;
-  padding: 1rem;
-}
-
-.loading-message {
-  color: #6b7280;
-  font-weight: 500;
-  text-align: center;
-  padding: 1rem;
+/* Content Layout */
+.baseline-content {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+  gap: 12px;
+  padding: 12px 16px;
+  min-height: 44px;
 }
 
-.loading-message::after {
-  content: '';
+.baseline-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.baseline-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.baseline-label {
+  font-size: 14px;
+  font-weight: 400;
+  color: #374151;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.baseline-status-text {
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 2px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+/* Status Colors */
+.baseline-icon.widely,
+.baseline-status-text.widely {
+  color: #059669;
+}
+
+.baseline-icon.newly, 
+.baseline-status-text.newly {
+  color: #d97706;
+}
+
+.baseline-icon.limited,
+.baseline-status-text.limited {
+  color: #dc2626;
+}
+
+.baseline-icon.unknown,
+.baseline-status-text.unknown {
+  color: #6b7280;
+}
+
+/* Loading State */
+.baseline-loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.baseline-spinner {
   width: 16px;
   height: 16px;
   border: 2px solid #e5e7eb;
   border-top: 2px solid #6b7280;
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: baseline-spin 1s linear infinite;
+  flex-shrink: 0;
 }
 
-@keyframes spin {
+@keyframes baseline-spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 
-.feature-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.feature-name {
-  margin: 0;
-  color: #1f2937;
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-
-.baseline-badge {
-  padding: 0.25rem 0.75rem;
-  border-radius: 1rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.025em;
-}
-
-.baseline-badge.high {
-  background-color: #dcfce7;
-  color: #15803d;
-  border: 1px solid #22c55e;
-}
-
-.baseline-badge.low {
-  background-color: #fef3c7;
-  color: #d97706;
-  border: 1px solid #f59e0b;
-}
-
-.baseline-badge.limited {
-  background-color: #fee2e2;
+/* Error State */
+.baseline-error {
+  padding: 12px 16px;
   color: #dc2626;
-  border: 1px solid #ef4444;
-}
-
-.baseline-badge.unknown {
-  background-color: #f1f5f9;
-  color: #64748b;
-  border: 1px solid #94a3b8;
-}
-
-.feature-description {
-  color: #4b5563;
-  margin: 0.5rem 0;
-  line-height: 1.5;
-}
-
-.availability-info {
-  margin-top: 0.75rem;
-  font-size: 0.875rem;
-  color: #6b7280;
-}
-
-.availability-date {
-  margin-bottom: 0.25rem;
-}
-
-.debug {
-  background-color: #f1f5f9;
-  padding: 0.5rem;
-  border-radius: 0.25rem;
-  font-size: 0.875rem;
+  font-size: 14px;
   font-weight: 500;
-  color: #64748b;
+}
+
+.baseline-status.has-error {
+  border-color: #fca5a5;
+  background: #fef2f2;
+}
+
+.baseline-status.is-loading {
+  border-color: #d1d5db;
+  background: #f9fafb;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .baseline-content {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+  
+  .baseline-label {
+    font-size: 13px;
+  }
+  
+  .baseline-status-text {
+    font-size: 11px;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .baseline-status {
+    border-width: 2px;
+  }
+  
+  .baseline-icon.widely,
+  .baseline-status-text.widely {
+    color: #065f46;
+  }
+  
+  .baseline-icon.newly,
+  .baseline-status-text.newly {
+    color: #92400e;
+  }
+  
+  .baseline-icon.limited,
+  .baseline-status-text.limited {
+    color: #991b1b;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .baseline-spinner {
+    animation: none;
+  }
 }

@@ -70,7 +70,7 @@ describe('Core API Functions', () => {
       const status = getBaselineStatus(feature)
 
       expect(status.message).toBe('Widely available')
-      expect(status.className).toBe('high')
+      expect(status.className).toBe('widely')
       expect(status.dates?.availableSince).toBe('2015-09-01')
       expect(status.dates?.widelyAvailableSince).toBe('2017-03-01')
     })
@@ -88,7 +88,7 @@ describe('Core API Functions', () => {
       const status = getBaselineStatus(feature)
 
       expect(status.message).toBe('Newly available')
-      expect(status.className).toBe('low')
+      expect(status.className).toBe('newly')
       expect(status.dates?.availableSince).toBe('2022-09-01')
       expect(status.dates?.widelyAvailableSince).toBeUndefined()
     })

@@ -1,26 +1,31 @@
 <template>
-  <div class="baseline-checker">
-    <div v-if="pending" class="loading-message">Loading compatibility data...</div>
-    
-    <div v-else-if="error || !feature" class="error-message">
-      {{ error?.message || `Feature "${featureName}" not found` }}
+  <div class="baseline-status" :class="{ 'is-loading': pending, 'has-error': error || !feature }">
+    <div v-if="pending" class="baseline-loading">
+      <div class="baseline-spinner"></div>
+      <span>Checking baseline status...</span>
     </div>
     
-    <div v-else-if="feature" class="feature-info">
-      <div class="feature-header">
-        <h3 class="feature-name">{{ feature.name }}</h3>
-        <div class="baseline-badge" :class="baselineStatus.className">
-          {{ baselineStatus.message }}
-        </div>
+    <div v-else-if="error || !feature" class="baseline-error">
+      <span>{{ error?.message || `Feature "${featureName}" not found` }}</span>
+    </div>
+    
+    <div v-else class="baseline-content">
+      <div class="baseline-icon" :class="baselineStatus.className" aria-hidden="true">
+        <svg viewBox="0 0 16 16" width="16" height="16">
+          <circle v-if="baselineStatus.className === 'widely'" cx="8" cy="8" r="6" fill="currentColor"/>
+          <circle v-else-if="baselineStatus.className === 'newly'" cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path v-else-if="baselineStatus.className === 'limited'" d="M8 2L14 14H2L8 2Z" fill="currentColor"/>
+          <circle v-else cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/>
+        </svg>
       </div>
       
-      <p v-if="feature.description" class="feature-description">
-        {{ feature.description }}
-      </p>
-      
-      <div v-if="baselineStatus.dates" class="availability-info">
-        <div v-if="baselineStatus.dates.availableSince" class="availability-date">Available since: {{ formatDate(baselineStatus.dates.availableSince) }}</div>
-        <div v-if="baselineStatus.dates.widelyAvailableSince" class="availability-date">Widely available since: {{ formatDate(baselineStatus.dates.widelyAvailableSince) }}</div>
+      <div class="baseline-info">
+        <div class="baseline-label">
+          <strong>Baseline</strong>
+        </div>
+        <div class="baseline-status-text" :class="baselineStatus.className">
+          {{ getStatusText() }}
+        </div>
       </div>
     </div>
   </div>
@@ -30,8 +35,7 @@
 import { computed, ref, watchEffect } from 'vue'
 import { 
   fetchBaselineData, 
-  getBaselineStatus, 
-  formatDate,
+  getBaselineStatus,
   type WebFeatureId,
   type WebPlatformFeature 
 } from '@baseline-banner/core'
@@ -49,6 +53,11 @@ const error = ref<Error | null>(null)
 
 // Computed baseline status
 const baselineStatus = computed(() => getBaselineStatus(feature.value))
+
+// Get clean status text
+const getStatusText = () => {
+  return baselineStatus.value.message
+}
 
 // Fetch data when featureName changes
 watchEffect(async () => {

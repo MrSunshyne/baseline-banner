@@ -89,8 +89,8 @@ describe('Component Markup Comparison', () => {
       // Wait for both components to finish loading
       await waitFor(() => {
         if (feature) {
-          expect(reactContainer.textContent).toContain(feature.name || 'Loading...')
-          expect(vueContainer.textContent).toContain(feature.name || 'Loading...')
+          expect(reactContainer.textContent).toContain('Baseline')
+          expect(vueContainer.textContent).toContain('Baseline')
         } else {
           expect(reactContainer.textContent).toContain('Feature "test-feature" not found')
           expect(vueContainer.textContent).toContain('Feature "test-feature" not found')
@@ -124,8 +124,10 @@ describe('Component Markup Comparison', () => {
     })
 
     await waitFor(() => {
-      expect(reactContainer.textContent).toContain('CSS Flexbox')
-      expect(vueContainer.textContent).toContain('CSS Flexbox')
+      expect(reactContainer.textContent).toContain('Baseline')
+      expect(vueContainer.textContent).toContain('Baseline')
+      expect(reactContainer.textContent).toContain('Widely available')
+      expect(vueContainer.textContent).toContain('Widely available')
     })
 
     // Both should have the custom class
@@ -162,8 +164,10 @@ describe('Component Markup Comparison', () => {
     })
 
     await waitFor(() => {
-      expect(reactContainer.textContent).toContain('CSS Grid Layout')
-      expect(vueContainer.textContent).toContain('CSS Grid Layout')
+      expect(reactContainer.textContent).toContain('Baseline')
+      expect(vueContainer.textContent).toContain('Baseline')
+      expect(reactContainer.textContent).toContain('Widely available')
+      expect(vueContainer.textContent).toContain('Widely available')
     })
 
     // Check that both have the same CSS classes in the same structure
@@ -203,8 +207,8 @@ describe('Component Markup Comparison', () => {
     })
 
     // Both should show loading
-    expect(reactContainer.textContent).toContain('Loading compatibility data...')
-    expect(vueContainer.textContent).toContain('Loading compatibility data...')
+    expect(reactContainer.textContent).toContain('Checking baseline status...')
+    expect(vueContainer.textContent).toContain('Checking baseline status...')
 
     // HTML should be identical
     const reactHTML = normalizeHTML(reactContainer.innerHTML)
