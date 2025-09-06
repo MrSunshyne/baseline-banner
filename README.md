@@ -73,8 +73,13 @@ console.log(status.message) // "Widely available"
 │       │   └── index.ts     # Vue plugin exports  
 │       └── package.json     # @baseline-banner/vue
 │
-├── DEVELOPMENT.md           # Local development guide
-└── README.md               # This file
+└── examples/
+    └── vue3/                 # Vue 3 example with TypeScript & Vite
+        ├── src/
+        │   ├── components/   # Interactive demo components
+        │   ├── App.vue      # Main application
+        │   └── main.ts      # Entry point
+        └── package.json     # Example dependencies
 ```
 
 ## Development
@@ -110,6 +115,14 @@ Want to add support for your favorite framework? See [DEVELOPMENT.md](./DEVELOPM
 ## Data Source
 
 This library uses the [Web Platform Dashboard](https://webstatus.dev/) API, which is maintained by the Chrome team and provides official baseline compatibility data as referenced in [web.dev baseline documentation](https://web.dev/articles/web-platform-dashboard-baseline).
+
+## 🎯 Examples
+
+Live examples and demos are available in the [`examples/`](./examples/) directory:
+
+- **[Vue 3](./examples/vue3/)** - Complete Vue 3 example with TypeScript, interactive demos, and modern CSS features showcase
+
+More framework examples coming soon (React, Angular, Svelte)!
 
 ## License
 
