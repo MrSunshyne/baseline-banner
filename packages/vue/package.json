@@ -1,11 +1,21 @@
 {
   "name": "@baseline-banner/vue",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "type": "module",
   "description": "Vue component for checking web feature baseline compatibility",
-  "keywords": ["vue", "baseline", "web-features", "compatibility", "browser-support", "component"],
+  "keywords": [
+    "vue",
+    "baseline",
+    "web-features",
+    "compatibility",
+    "browser-support",
+    "component"
+  ],
   "author": "Sandeep Ramgolam",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

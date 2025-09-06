@@ -1,11 +1,19 @@
 {
   "name": "@baseline-banner/core",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "type": "module",
   "description": "Core functionality for checking web feature baseline compatibility",
-  "keywords": ["baseline", "web-features", "compatibility", "browser-support"],
+  "keywords": [
+    "baseline",
+    "web-features",
+    "compatibility",
+    "browser-support"
+  ],
   "author": "Sandeep Ramgolam",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
