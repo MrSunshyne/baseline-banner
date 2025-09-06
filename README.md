@@ -15,7 +15,7 @@ A framework-agnostic library for checking web feature baseline compatibility. Bu
 - 📦 **Tree Shakeable** - Only bundle what you use
 - 🔒 **Type Safe** - Full TypeScript support with explicit union types
 
-## Quick Start
+## Installation & Usage
 
 ### Vue 3
 
@@ -25,12 +25,19 @@ npm install @baseline-banner/vue
 
 ```vue
 <template>
-  <BaselineChecker feature-name="flexbox" />
-  <BaselineChecker feature-name="container-queries" />
+  <div>
+    <!-- Single feature -->
+    <BaselineChecker :features="['flexbox']" />
+    
+    <!-- Multiple features -->
+    <BaselineChecker :features="['grid', 'css-container-queries', 'css-nesting']" />
+  </div>
 </template>
 
 <script setup>
 import { BaselineChecker } from '@baseline-banner/vue'
+// Import styles
+import '@baseline-banner/vue/style.css'
 </script>
 ```
 
@@ -48,31 +55,57 @@ const status = getBaselineStatus(feature)
 console.log(status.message) // "Widely available"
 ```
 
+## Project Structure
+
+```
+@baseline-banner/
+├── packages/
+│   ├── core/                 # Core TypeScript library
+│   │   ├── src/
+│   │   │   ├── api.ts       # API logic and types  
+│   │   │   ├── types.ts     # Generated feature IDs (1080+)
+│   │   │   └── index.ts     # Main exports
+│   │   └── package.json     # @baseline-banner/core
+│   │
+│   └── vue/                  # Vue 3 wrapper
+│       ├── src/
+│       │   ├── BaselineChecker.vue  # Main component
+│       │   └── index.ts     # Vue plugin exports  
+│       └── package.json     # @baseline-banner/vue
+│
+├── DEVELOPMENT.md           # Local development guide
+└── README.md               # This file
+```
+
 ## Development
 
-This is a pnpm workspace monorepo:
+This is a pnpm workspace monorepo. For detailed local development instructions, see [DEVELOPMENT.md](./DEVELOPMENT.md).
+
+**Quick commands:**
 
 ```bash
 # Install dependencies
 pnpm install
 
-# Build all packages
+# Build all packages  
 pnpm build
+
+# Generate fresh tarballs for local testing
+pnpm pack:local
 
 # Generate types from latest web-features
 pnpm generate-types
-
-# Run tests
-pnpm test
 ```
 
-## Roadmap
+## Framework Support
 
-- [x] Vue wrapper (`@baseline-banner/vue`)
-- [ ] React wrapper (`@baseline-banner/react`)
-- [ ] Svelte wrapper (`@baseline-banner/svelte`)
-- [ ] Angular wrapper (`@baseline-banner/angular`)
-- [ ] Solid wrapper (`@baseline-banner/solid`)
+- ✅ **Vue 3** - Available now
+- 🚧 **React** - Coming soon  
+- 🚧 **Svelte** - Planned
+- 🚧 **Angular** - Planned
+- 🚧 **Solid** - Planned
+
+Want to add support for your favorite framework? See [DEVELOPMENT.md](./DEVELOPMENT.md) and open an issue!
 
 ## Data Source
 
