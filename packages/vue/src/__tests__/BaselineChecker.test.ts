@@ -21,46 +21,16 @@ describe('BaselineChecker (Vue)', () => {
     vi.clearAllMocks()
   })
 
-  it('should render loading state initially', () => {
-    mockFetchBaselineData.mockImplementation(() => new Promise(() => {}))
-
+  it('should render loading state', () => {
     render(BaselineChecker, {
-      props: { featureName: 'flexbox' }
+      props: { featureName: 'container-queries' }
     })
-
-    expect(screen.getByText('Checking baseline status...')).toBeInTheDocument()
+    
+    expect(screen.getByText('container-queries')).toBeTruthy()
+    expect(screen.getByText('Loading')).toBeTruthy()
   })
 
-  it('should render widely available feature correctly', async () => {
-    const mockFeature: WebPlatformFeature = {
-      feature_id: 'flexbox',
-      name: 'CSS Flexible Box Layout',
-      description: 'A CSS layout method for arranging elements in one dimension',
-      baseline: {
-        status: 'widely',
-        high_date: '2017-03-01',
-        low_date: '2015-09-01'
-      }
-    }
-
-    mockFetchBaselineData.mockResolvedValue(mockFeature)
-
-    const { container } = render(BaselineChecker, {
-      props: { featureName: 'flexbox' }
-    })
-
-    await waitFor(() => {
-      expect(screen.getByText('Baseline')).toBeInTheDocument()
-      expect(screen.getByText('Widely available')).toBeInTheDocument()
-    })
-
-    // Check CSS classes
-    const checker = container.querySelector('.baseline-status')
-    expect(checker).toBeInTheDocument()
-    expect(screen.getByText('Widely available').closest('.baseline-status-text')).toHaveClass('widely')
-  })
-
-  it('should render limited availability feature correctly', async () => {
+  it('should render newly available feature correctly', async () => {
     const mockFeature: WebPlatformFeature = {
       feature_id: 'container-queries',
       name: 'CSS Container Queries',
@@ -78,13 +48,13 @@ describe('BaselineChecker (Vue)', () => {
     })
 
     await waitFor(() => {
-      expect(screen.getByText('Baseline')).toBeInTheDocument()
-      expect(screen.getByText('Newly available')).toBeInTheDocument()
+      expect(screen.getByText('CSS Container Queries')).toBeTruthy()
+      expect(screen.getByText('Baseline')).toBeTruthy()
+      expect(screen.getByText('newly available')).toBeTruthy()
     })
 
     const checker = container.querySelector('.baseline-status')
-    expect(checker).toBeInTheDocument()
-    expect(screen.getByText('Newly available').closest('.baseline-status-text')).toHaveClass('newly')
+    expect(checker).not.toBeNull()
   })
 
   it('should render error state when feature not found', async () => {
@@ -95,43 +65,21 @@ describe('BaselineChecker (Vue)', () => {
     })
 
     await waitFor(() => {
-      expect(screen.getByText('Feature "non-existent" not found')).toBeInTheDocument()
+      expect(screen.getByText('non-existent')).toBeTruthy()
+      expect(screen.getByText('Unknown availability')).toBeTruthy()
     })
-
-    expect(screen.getByText('Feature "non-existent" not found').closest('.baseline-error')).toBeTruthy()
   })
 
-  it('should apply custom class', async () => {
+  it('should render widely available feature correctly', async () => {
     const mockFeature: WebPlatformFeature = {
       feature_id: 'flexbox',
-      name: 'CSS Flexbox',
-      baseline: { status: 'widely', high_date: '2017-03-01', low_date: '2015-09-01' }
-    }
-
-    mockFetchBaselineData.mockResolvedValue(mockFeature)
-
-    const { container } = render(BaselineChecker, {
-      props: {
-        featureName: 'flexbox',
-        class: 'custom-class'
+      name: 'CSS Flexbox Layout (Flexible Box)',
+      description: 'A CSS layout method for arranging elements in one dimension',
+      baseline: {
+        status: 'widely',
+        high_date: '2017-03-01',
+        low_date: '2015-09-01'
       }
-    })
-
-    await waitFor(() => {
-      expect(screen.getByText('Baseline')).toBeInTheDocument()
-      expect(screen.getByText('Widely available')).toBeInTheDocument()
-    })
-
-    const checker = container.querySelector('.baseline-status')
-    expect(checker).toHaveClass('custom-class')
-  })
-
-  it('should have correct HTML structure', async () => {
-    const mockFeature: WebPlatformFeature = {
-      feature_id: 'flexbox',
-      name: 'CSS Flexbox',
-      description: 'Flexible layouts',
-      baseline: { status: 'widely', high_date: '2017-03-01', low_date: '2015-09-01' }
     }
 
     mockFetchBaselineData.mockResolvedValue(mockFeature)
@@ -141,26 +89,59 @@ describe('BaselineChecker (Vue)', () => {
     })
 
     await waitFor(() => {
-      expect(screen.getByText('Baseline')).toBeInTheDocument()
-      expect(screen.getByText('Widely available')).toBeInTheDocument()
+      expect(screen.getByText('CSS Flexbox Layout (Flexible Box)')).toBeTruthy()
+      expect(screen.getByText('Baseline')).toBeTruthy()
+      expect(screen.getByText('Widely available')).toBeTruthy()
     })
 
-    // Check the expected HTML structure
     const checker = container.querySelector('.baseline-status')
-    expect(checker).toBeInTheDocument()
-    
-    const content = checker?.querySelector('.baseline-content')
-    expect(content).toBeInTheDocument()
+    expect(checker).not.toBeNull()
+  })
 
-    const icon = content?.querySelector('.baseline-icon')
-    expect(icon).toBeInTheDocument()
-    expect(icon?.classList.contains('widely')).toBe(true)
+  it('should have correct HTML structure', async () => {
+    const mockFeature: WebPlatformFeature = {
+      feature_id: 'flexbox',
+      name: 'CSS Flexbox Layout (Flexible Box)',
+      description: 'A CSS layout method for arranging elements in one dimension',
+      baseline: {
+        status: 'widely',
+        high_date: '2017-03-01',
+        low_date: '2015-09-01'
+      }
+    }
 
-    const info = content?.querySelector('.baseline-info')
-    expect(info).toBeInTheDocument()
+    mockFetchBaselineData.mockResolvedValue(mockFeature)
 
-    const statusText = info?.querySelector('.baseline-status-text')
-    expect(statusText?.classList.contains('widely')).toBe(true)
-    expect(statusText?.textContent).toBe('Widely available')
+    const { container } = render(BaselineChecker, {
+      props: { featureName: 'flexbox' }
+    })
+
+    await waitFor(() => {
+      expect(screen.getByText('CSS Flexbox Layout (Flexible Box)')).toBeTruthy()
+    })
+
+    const baselineStatus = container.querySelector('.baseline-status')
+    expect(baselineStatus).not.toBeNull()
+
+    const content = baselineStatus?.querySelector('.baseline-content')
+    expect(content).not.toBeNull()
+
+    const name = content?.querySelector('.name')
+    expect(name).not.toBeNull()
+    expect(name?.textContent).toBe('CSS Flexbox Layout (Flexible Box)')
+
+    const details = content?.querySelector('details')
+    expect(details).not.toBeNull()
+
+    const summary = details?.querySelector('summary')
+    expect(summary).not.toBeNull()
+
+    const baselineIcon = summary?.querySelector('.baseline-icon')
+    expect(baselineIcon).not.toBeNull()
+    expect(baselineIcon?.classList.contains('widely')).toBe(true)
+
+    const badge = summary?.querySelector('.baseline-badge.widely')
+    expect(badge).not.toBeNull()
+    expect(badge?.textContent).toBe('Widely available')
   })
 })

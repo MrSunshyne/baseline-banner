@@ -1,156 +1,243 @@
-/* Baseline Status Component - Inspired by web.dev design */
+/* Baseline Status Component - Based on official web.dev baseline-status */
 .baseline-status {
-  display: inline-block;
-  border: 1px solid #e5e7eb;
+  /* CSS Custom Properties matching the official component (light mode defaults) */
+  --baseline-status-color-limited: #ea8600;
+  --baseline-status-color-newly: #1a73e8;
+  --baseline-status-color-widely: #1e8e3e;
+  --baseline-status-color-no_data: #707070;
+  --baseline-status-color-outline: #d9d9d9;
+  --baseline-status-color-link: #1a73e8;
+  
+  /* Baseline icon colors */
+  --baseline-icon-limited-front: #f09409;
+  --baseline-icon-limited-back: #c6c6c6;
+  --baseline-icon-widely-front: #1ea446;
+  --baseline-icon-widely-back: #c4eed0;
+  --baseline-icon-newly-front: #1b6ef3;
+  --baseline-icon-newly-back: #a8c7fa;
+  --baseline-icon-no_data: #909090;
+
+  color: inherit;
+  display: block;
+  border: solid 1px var(--baseline-status-color-outline);
   border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  max-width: 100%;
-}
-
-/* Content Layout */
-.baseline-content {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  min-height: 44px;
-}
-
-.baseline-icon {
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-}
-
-.baseline-info {
-  flex: 1;
-  min-width: 0;
-}
-
-.baseline-label {
+  padding: 16px 24px 0 24px;
+  max-width: 800px;
+  font-family: Roboto, sans-serif;
   font-size: 14px;
-  font-weight: 400;
-  color: #374151;
+  font-style: normal;
+}
+
+/* Feature name styling */
+.baseline-status .name {
+  font-weight: normal;
+  font-size: 20px;
   margin: 0;
-  line-height: 1.2;
+  color: inherit;
 }
 
-.baseline-status-text {
-  font-size: 12px;
-  font-weight: 500;
-  margin-top: 2px;
-  line-height: 1.2;
-  text-transform: uppercase;
-  letter-spacing: 0.025em;
+/* Links */
+.baseline-status a,
+.baseline-status a:active,
+.baseline-status a:visited {
+  color: var(--baseline-status-color-link);
+  text-decoration: none;
 }
 
-/* Status Colors */
-.baseline-icon.widely,
-.baseline-status-text.widely {
-  color: #059669;
+.baseline-status a:hover {
+  text-decoration: underline;
 }
 
-.baseline-icon.newly, 
-.baseline-status-text.newly {
-  color: #d97706;
+/* Main status layout */
+.baseline-status-title {
+  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex: 1;
 }
 
-.baseline-icon.limited,
-.baseline-status-text.limited {
-  color: #dc2626;
-}
-
-.baseline-icon.unknown,
-.baseline-status-text.unknown {
-  color: #6b7280;
-}
-
-/* Loading State */
-.baseline-loading {
+.baseline-status-title div:first-child {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 16px;
-  color: #6b7280;
-  font-size: 14px;
+  gap: 0.2rem;
 }
 
-.baseline-spinner {
-  width: 16px;
-  height: 16px;
-  border: 2px solid #e5e7eb;
-  border-top: 2px solid #6b7280;
-  border-radius: 50%;
-  animation: baseline-spin 1s linear infinite;
-  flex-shrink: 0;
+/* Baseline badge styling */
+.baseline-badge {
+  background: #3367D6;
+  color: #fff;
+  font-size: 11px;
+  padding: 0 4px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  line-height: 20px;
+  margin-inline: 0.5rem;
+  white-space: nowrap;
 }
 
-@keyframes baseline-spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.baseline-badge.loading {
+  background: #666;
 }
 
-/* Error State */
-.baseline-error {
-  padding: 12px 16px;
-  color: #dc2626;
-  font-size: 14px;
-  font-weight: 500;
+.baseline-badge.no-data {
+  background: var(--baseline-status-color-no_data);
 }
 
-.baseline-status.has-error {
-  border-color: #fca5a5;
-  background: #fef2f2;
+.baseline-badge.limited {
+  background: var(--baseline-status-color-limited);
 }
 
-.baseline-status.is-loading {
-  border-color: #d1d5db;
-  background: #f9fafb;
+.baseline-badge.newly-badge {
+  background: var(--baseline-status-color-newly);
+  margin-inline: 0.2rem;
 }
 
-/* Responsive Design */
+/* Browser support section */
+.baseline-status-browsers {
+  font-size: 0;
+  max-width: 200px;
+  display: flex;
+  gap: 16px;
+}
+
+.baseline-status-browsers span {
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Support status colors */
+.support-no_data {
+  color: var(--baseline-status-color-no_data);
+}
+
+.support-unavailable {
+  color: var(--baseline-status-color-limited);
+}
+
+.support-newly,
+.support-available {
+  color: var(--baseline-status-color-newly);
+}
+
+.support-widely {
+  color: var(--baseline-status-color-widely);
+}
+
+/* Details/Summary styling */
+details > summary {
+  display: flex;
+  cursor: pointer;
+  font-size: 16px;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-between;
+  padding: 16px 0;
+  list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+details > summary .open-icon {
+  width: 10px;
+  height: 20px;
+  margin-left: auto;
+  color: inherit;
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 420px) {
+  details > summary .open-icon {
+    margin-left: 48px;
+  }
+}
+
+details > summary .open-icon svg {
+  transition: transform 0.3s;
+}
+
+details[open] summary .open-icon svg {
+  transform: rotate(180deg);
+}
+
+/* Description content */
+.baseline-description {
+  padding-bottom: 16px;
+  line-height: 1.5;
+}
+
+.learn-more {
+  margin-top: 12px;
+}
+
+/* Icon Components */
+.baseline-icon {
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.baseline-icon svg {
+  width: 36px;
+  height: 20px;
+  display: inline-block;
+}
+
+.browser-icon,
+.support-icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Loading and error states */
+.baseline-loading,
+.baseline-error-state {
+  padding-bottom: 16px;
+}
+
+.baseline-year {
+  color: inherit;
+  font-weight: normal;
+  margin-inline: 0.2rem;
+}
+
+/* Responsive adjustments */
 @media (max-width: 640px) {
-  .baseline-content {
-    padding: 10px 12px;
-    gap: 10px;
-  }
-  
-  .baseline-label {
-    font-size: 13px;
-  }
-  
-  .baseline-status-text {
-    font-size: 11px;
-  }
-}
-
-/* High Contrast Mode Support */
-@media (prefers-contrast: high) {
   .baseline-status {
-    border-width: 2px;
+    padding: 12px 16px 0 16px;
   }
   
-  .baseline-icon.widely,
-  .baseline-status-text.widely {
-    color: #065f46;
+  .baseline-status-title {
+    gap: 0.5rem;
   }
   
-  .baseline-icon.newly,
-  .baseline-status-text.newly {
-    color: #92400e;
-  }
-  
-  .baseline-icon.limited,
-  .baseline-status-text.limited {
-    color: #991b1b;
+  .baseline-status-browsers {
+    gap: 12px;
   }
 }
 
-/* Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-  .baseline-spinner {
-    animation: none;
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .baseline-status {
+    --baseline-status-color-limited: #f09418;
+    --baseline-status-color-newly: #4185ff;
+    --baseline-status-color-widely: #24a446;
+    --baseline-status-color-no_data: #868686;
+    --baseline-status-color-outline: #444;
+    --baseline-status-color-link: #5aa1ff;
+    
+    --baseline-icon-limited-back: #565656;
+    --baseline-icon-widely-back: #125225;
+    --baseline-icon-newly-back: #2d509e;
+    --baseline-icon-no_data: #666666;
+    
+    background: #1a1a1a;
+    border-color: #444;
+    color: #e0e0e0;
   }
 }
