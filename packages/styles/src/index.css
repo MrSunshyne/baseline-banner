@@ -1,114 +1,243 @@
-.baseline-checker {
-  border: 1px solid #e2e8f0;
+/* Baseline Status Component - Based on official web.dev baseline-status */
+.baseline-status {
+  /* CSS Custom Properties matching the official component (light mode defaults) */
+  --baseline-status-color-limited: #ea8600;
+  --baseline-status-color-newly: #1a73e8;
+  --baseline-status-color-widely: #1e8e3e;
+  --baseline-status-color-no_data: #707070;
+  --baseline-status-color-outline: #d9d9d9;
+  --baseline-status-color-link: #1a73e8;
+  
+  /* Baseline icon colors */
+  --baseline-icon-limited-front: #f09409;
+  --baseline-icon-limited-back: #c6c6c6;
+  --baseline-icon-widely-front: #1ea446;
+  --baseline-icon-widely-back: #c4eed0;
+  --baseline-icon-newly-front: #1b6ef3;
+  --baseline-icon-newly-back: #a8c7fa;
+  --baseline-icon-no_data: #909090;
+
+  color: inherit;
+  display: block;
+  border: solid 1px var(--baseline-status-color-outline);
   border-radius: 8px;
-  padding: 1rem;
-  margin: 1rem 0;
-  background: #f8fafc;
+  padding: 16px 24px 0 24px;
+  max-width: 800px;
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  font-style: normal;
 }
 
-.error-message {
-  color: #ef4444;
-  font-weight: 500;
-  text-align: center;
-  padding: 1rem;
-}
-
-.loading-message {
-  color: #6b7280;
-  font-weight: 500;
-  text-align: center;
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.loading-message::after {
-  content: '';
-  width: 16px;
-  height: 16px;
-  border: 2px solid #e5e7eb;
-  border-top: 2px solid #6b7280;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.feature-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.feature-name {
+/* Feature name styling */
+.baseline-status .name {
+  font-weight: normal;
+  font-size: 20px;
   margin: 0;
-  color: #1f2937;
-  font-size: 1.25rem;
-  font-weight: 600;
+  color: inherit;
 }
 
+/* Links */
+.baseline-status a,
+.baseline-status a:active,
+.baseline-status a:visited {
+  color: var(--baseline-status-color-link);
+  text-decoration: none;
+}
+
+.baseline-status a:hover {
+  text-decoration: underline;
+}
+
+/* Main status layout */
+.baseline-status-title {
+  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.baseline-status-title div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+/* Baseline badge styling */
 .baseline-badge {
-  padding: 0.25rem 0.75rem;
-  border-radius: 1rem;
-  font-size: 0.875rem;
-  font-weight: 500;
+  background: #3367D6;
+  color: #fff;
+  font-size: 11px;
+  padding: 0 4px;
+  border-radius: 2px;
   text-transform: uppercase;
-  letter-spacing: 0.025em;
+  line-height: 20px;
+  margin-inline: 0.5rem;
+  white-space: nowrap;
 }
 
-.baseline-badge.high {
-  background-color: #dcfce7;
-  color: #15803d;
-  border: 1px solid #22c55e;
+.baseline-badge.loading {
+  background: #666;
 }
 
-.baseline-badge.low {
-  background-color: #fef3c7;
-  color: #d97706;
-  border: 1px solid #f59e0b;
+.baseline-badge.no-data {
+  background: var(--baseline-status-color-no_data);
 }
 
 .baseline-badge.limited {
-  background-color: #fee2e2;
-  color: #dc2626;
-  border: 1px solid #ef4444;
+  background: var(--baseline-status-color-limited);
 }
 
-.baseline-badge.unknown {
-  background-color: #f1f5f9;
-  color: #64748b;
-  border: 1px solid #94a3b8;
+.baseline-badge.newly-badge {
+  background: var(--baseline-status-color-newly);
+  margin-inline: 0.2rem;
 }
 
-.feature-description {
-  color: #4b5563;
-  margin: 0.5rem 0;
+/* Browser support section */
+.baseline-status-browsers {
+  font-size: 0;
+  max-width: 200px;
+  display: flex;
+  gap: 16px;
+}
+
+.baseline-status-browsers span {
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Support status colors */
+.support-no_data {
+  color: var(--baseline-status-color-no_data);
+}
+
+.support-unavailable {
+  color: var(--baseline-status-color-limited);
+}
+
+.support-newly,
+.support-available {
+  color: var(--baseline-status-color-newly);
+}
+
+.support-widely {
+  color: var(--baseline-status-color-widely);
+}
+
+/* Details/Summary styling */
+details > summary {
+  display: flex;
+  cursor: pointer;
+  font-size: 16px;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-between;
+  padding: 16px 0;
+  list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+details > summary .open-icon {
+  width: 10px;
+  height: 20px;
+  margin-left: auto;
+  color: inherit;
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 420px) {
+  details > summary .open-icon {
+    margin-left: 48px;
+  }
+}
+
+details > summary .open-icon svg {
+  transition: transform 0.3s;
+}
+
+details[open] summary .open-icon svg {
+  transform: rotate(180deg);
+}
+
+/* Description content */
+.baseline-description {
+  padding-bottom: 16px;
   line-height: 1.5;
 }
 
-.availability-info {
-  margin-top: 0.75rem;
-  font-size: 0.875rem;
-  color: #6b7280;
+.learn-more {
+  margin-top: 12px;
 }
 
-.availability-date {
-  margin-bottom: 0.25rem;
+/* Icon Components */
+.baseline-icon {
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
 }
 
-.debug {
-  background-color: #f1f5f9;
-  padding: 0.5rem;
-  border-radius: 0.25rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #64748b;
+.baseline-icon svg {
+  width: 36px;
+  height: 20px;
+  display: inline-block;
+}
+
+.browser-icon,
+.support-icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Loading and error states */
+.baseline-loading,
+.baseline-error-state {
+  padding-bottom: 16px;
+}
+
+.baseline-year {
+  color: inherit;
+  font-weight: normal;
+  margin-inline: 0.2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .baseline-status {
+    padding: 12px 16px 0 16px;
+  }
+  
+  .baseline-status-title {
+    gap: 0.5rem;
+  }
+  
+  .baseline-status-browsers {
+    gap: 12px;
+  }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .baseline-status {
+    --baseline-status-color-limited: #f09418;
+    --baseline-status-color-newly: #4185ff;
+    --baseline-status-color-widely: #24a446;
+    --baseline-status-color-no_data: #868686;
+    --baseline-status-color-outline: #444;
+    --baseline-status-color-link: #5aa1ff;
+    
+    --baseline-icon-limited-back: #565656;
+    --baseline-icon-widely-back: #125225;
+    --baseline-icon-newly-back: #2d509e;
+    --baseline-icon-no_data: #666666;
+    
+    background: #1a1a1a;
+    border-color: #444;
+    color: #e0e0e0;
+  }
 }
