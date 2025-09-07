@@ -1,0 +1,23 @@
+{
+  "name": "@baseline-banner/playground",
+  "version": "1.0.0",
+  "description": "Theme development playground for baseline-banner components",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@baseline-banner/core": "workspace:*",
+    "@baseline-banner/styles": "workspace:*",
+    "vue": "^3.4.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^6.3.5",
+    "vue-tsc": "^2.0.0"
+  }
+}

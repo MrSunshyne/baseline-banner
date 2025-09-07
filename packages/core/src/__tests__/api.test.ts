@@ -49,7 +49,7 @@ describe('Core API Functions', () => {
 
       global.fetch = vi.fn().mockResolvedValue(mockResponse)
 
-      const result = await fetchBaselineData('non-existent-feature')
+      const result = await fetchBaselineData('non-existent-feature' as any)
 
       expect(result).toBeNull()
     })
