@@ -13,5 +13,11 @@ export type {
   BaselineInfo,
   WebPlatformFeature,
   APIResponse,
-  BaselineStatus
+  BaselineStatus,
+  BrowserImplementation,
+  BrowserIdentifier,
 } from './api.js'
+
+export {
+  definitions
+} from './definitions.js'

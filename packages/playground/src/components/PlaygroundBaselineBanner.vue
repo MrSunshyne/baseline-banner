@@ -1,5 +1,5 @@
 <template>
-  <div class="baseline-banner" :class="themeClass">
+  <div class="baseline-banner" data-theme="default">
     <div class="baseline-checker">
       <div v-if="pending" class="loading-message">Loading compatibility data...</div>
       
@@ -77,54 +77,3 @@ watchEffect(async () => {
   }
 })
 </script>
-
-<style scoped>
-/* Theme variations */
-.baseline-banner.theme-dark .baseline-checker {
-  background: #1f2937;
-  color: #f9fafb;
-  border-color: #374151;
-}
-
-.baseline-banner.theme-dark .feature-name {
-  color: #f9fafb;
-}
-
-.baseline-banner.theme-dark .feature-description {
-  color: #d1d5db;
-}
-
-.baseline-banner.theme-dark .availability-info {
-  color: #9ca3af;
-}
-
-.baseline-banner.theme-minimal .baseline-checker {
-  background: transparent;
-  border: 1px solid #e5e7eb;
-  box-shadow: none;
-}
-
-.baseline-banner.theme-colorful .baseline-checker {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-}
-
-.baseline-banner.theme-colorful .feature-name {
-  color: white;
-}
-
-.baseline-banner.theme-colorful .feature-description {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.baseline-banner.theme-colorful .availability-info {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.baseline-banner.theme-colorful .baseline-badge {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-</style>

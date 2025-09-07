@@ -1,9 +1,17 @@
 import type { WebFeatureId } from './types.js'
 
 export interface BaselineInfo {
-  status: 'limited' | 'newly' | 'widely'
+  status: 'limited' | 'newly' | 'widely' | 'no_data'
   low_date?: string
   high_date?: string
+}
+
+export type BrowserIdentifier = 'chrome' | 'chrome_android' | 'edge' | 'firefox' | 'firefox_android' | 'safari' | 'safari_ios'
+
+export interface BrowserImplementation {
+  date: string
+  status: 'available' | 'not_available' | 'no_data'
+  version: string
 }
 
 export interface WebPlatformFeature {
@@ -11,6 +19,9 @@ export interface WebPlatformFeature {
   name: string
   description?: string
   baseline?: BaselineInfo
+  browser_implementations?: {
+    [key in BrowserIdentifier]: BrowserImplementation
+  }
   spec?: {
     links?: Array<{
       url: string
@@ -30,6 +41,7 @@ export interface BaselineStatus {
   dates?: {
     availableSince?: string
     widelyAvailableSince?: string
+    year?: string
   }
 }
 
@@ -75,7 +87,7 @@ export function getBaselineStatus(feature: WebPlatformFeature | null): BaselineS
         isAvailable: true,
         dates: {
           availableSince: feature.baseline?.low_date,
-          widelyAvailableSince: feature.baseline?.high_date
+          widelyAvailableSince: feature.baseline?.high_date,
         }
       }
     case 'newly':
@@ -84,7 +96,8 @@ export function getBaselineStatus(feature: WebPlatformFeature | null): BaselineS
         className: 'low',
         isAvailable: true,
         dates: {
-          availableSince: feature.baseline?.low_date
+          availableSince: feature.baseline?.low_date,
+          year: formatDateToYear(feature.baseline?.low_date || '')
         }
       }
     case 'limited':
@@ -110,5 +123,16 @@ export function formatDate(dateString: string): string {
   return new Date(dateString).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long'
+  })
+}
+
+
+/**
+ * Format date string to year only
+ */
+export function formatDateToYear(dateString: string): string {
+  if (!dateString) return ''
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric'
   })
 }

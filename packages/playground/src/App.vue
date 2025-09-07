@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <header>
-      <h1>🎨 Baseline Banner Theme Playground</h1>
-      <p>Experiment with different themes for the baseline-banner component</p>
+      <h1>Baseline Banner Theme Playground</h1>
     </header>
 
     <main>
@@ -18,72 +17,39 @@
           </select>
         </div>
 
-        <div class="control-group">
-          <label for="theme-select">Choose a Theme:</label>
-          <select id="theme-select" v-model="selectedTheme">
-            <option value="default">Default</option>
-            <option value="dark">Dark</option>
-            <option value="minimal">Minimal</option>
-            <option value="colorful">Colorful</option>
-          </select>
+        <div>
+          <label for="debug">Show debug information:</label>
+          <input id="debug" type="checkbox" v-model="showDebug" />
         </div>
       </section>
 
       <section class="preview">
-        <h2>Current Preview</h2>
-        <BaselineBanner 
-          :feature-name="selectedFeature" 
-          :theme="selectedTheme" 
+        <h2>Default Theme</h2>
+        <PlaygroundBaselineBanner 
+          :feature-name="'font-size-adjust'" 
+          :show-debug="showDebug"
         />
-      </section>
-
-      <section class="theme-showcase">
-        <h2>All Themes Showcase</h2>
-        <div class="theme-grid">
-          <div class="theme-example">
-            <h3>Default Theme</h3>
-            <BaselineBanner feature-name="grid" theme="default" />
-          </div>
-          
-          <div class="theme-example">
-            <h3>Dark Theme</h3>
-            <BaselineBanner feature-name="flexbox" theme="dark" />
-          </div>
-          
-          <div class="theme-example">
-            <h3>Minimal Theme</h3>
-            <BaselineBanner feature-name="autonomous-custom-elements" theme="minimal" />
-          </div>
-          
-          <div class="theme-example">
-            <h3>Colorful Theme</h3>
-            <BaselineBanner feature-name="nesting" theme="colorful" />
-          </div>
-        </div>
-      </section>
-
-      <section class="documentation">
-        <h2>🛠️ Theme Development</h2>
-        <div class="docs-content">
-          <p>
-            This playground allows you to experiment with different themes for the baseline-banner component.
-            The component uses styles from <code>@baseline-banner/styles</code> as the foundation.
-          </p>
-          
-          <h3>Available Themes:</h3>
-          <ul>
-            <li><strong>Default:</strong> The standard theme with light colors and subtle shadows</li>
-            <li><strong>Dark:</strong> Dark background with light text for dark mode interfaces</li>
-            <li><strong>Minimal:</strong> Clean, borderless design for subtle integration</li>
-            <li><strong>Colorful:</strong> Vibrant gradient background for eye-catching displays</li>
-          </ul>
-
-          <h3>Creating Custom Themes:</h3>
-          <p>
-            Modify the <code>BaselineBanner.vue</code> component to add your own theme variations.
-            Each theme applies custom styles while maintaining the base functionality from the core package.
-          </p>
-        </div>
+        <PlaygroundBaselineBanner 
+          :feature-name="'if'" 
+          :show-debug="showDebug"
+        />
+        <PlaygroundBaselineBanner 
+          :feature-name="'grid'" 
+          :show-debug="showDebug"
+        />
+        <h2>Web Dev Theme</h2>
+        <PlaygroundBaselineBannerWebDev 
+          :feature-name="'font-size-adjust'" 
+          :show-debug="showDebug"
+        />
+        <PlaygroundBaselineBannerWebDev 
+          :feature-name="'if'" 
+          :show-debug="showDebug"
+        />
+        <PlaygroundBaselineBannerWebDev 
+          :feature-name="'grid'" 
+          :show-debug="showDebug"
+        />
       </section>
     </main>
   </div>
@@ -91,13 +57,15 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaselineBanner from './components/BaselineBanner.vue'
+import PlaygroundBaselineBanner from './components/PlaygroundBaselineBanner.vue'
+import PlaygroundBaselineBannerWebDev from './components/PlaygroundBaselineBannerWebDev.vue'
 import type { WebFeatureId } from '@baseline-banner/core'
 
 type ThemeType = 'default' | 'dark' | 'minimal' | 'colorful'
 
-const selectedFeature = ref<WebFeatureId>('grid')
+const selectedFeature = ref<WebFeatureId>('font-size-adjust')
 const selectedTheme = ref<ThemeType>('default')
+const showDebug = ref(false)
 </script>
 
 <style scoped>
@@ -127,7 +95,6 @@ section {
 }
 
 .controls {
-  background: #f8fafc;
   padding: 1.5rem;
   border-radius: 12px;
   display: flex;
@@ -144,14 +111,12 @@ section {
 
 .control-group label {
   font-weight: 600;
-  color: #374151;
 }
 
 .control-group select {
   padding: 0.5rem 1rem;
   border: 2px solid #e5e7eb;
   border-radius: 8px;
-  background: white;
   font-size: 1rem;
   min-width: 150px;
 }
@@ -162,7 +127,7 @@ section {
 }
 
 .preview {
-  text-align: center;
+  max-width: 700px;
 }
 
 .preview h2 {
