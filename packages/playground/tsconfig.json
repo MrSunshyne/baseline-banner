@@ -23,7 +23,11 @@
     /* Path mapping */
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@baseline-banner/core": ["../core/dist/index.d.ts"],
+      "@baseline-banner/core/*": ["../core/dist/*"],
+      "@baseline-banner/styles": ["../styles/dist/index.css"],
+      "@baseline-banner/styles/*": ["../styles/dist/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],

@@ -33,7 +33,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "vite build && vue-tsc --emitDeclarationOnly --outDir dist",
+    "build": "vite build && vue-tsc --project tsconfig.build.json",
     "dev": "vite build --watch",
     "type-check": "vue-tsc --noEmit",
     "test": "vitest"

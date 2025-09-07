@@ -10,6 +10,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
+    "allowSyntheticDefaultImports": true,
     
     /* Linting */
     "strict": true,
@@ -21,7 +22,16 @@
     "declaration": true,
     "declarationMap": true,
     "outDir": "./dist",
-    "emitDeclarationOnly": false
+    "emitDeclarationOnly": false,
+    
+    /* Path mapping for workspace packages - for IDE only, build uses node_modules */
+    "baseUrl": ".",
+    "paths": {
+      "@baseline-banner/core": ["../core/dist/index.d.ts"],
+      "@baseline-banner/core/*": ["../core/dist/*"],
+      "@baseline-banner/styles": ["../styles/dist/index.css"],
+      "@baseline-banner/styles/*": ["../styles/dist/*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
