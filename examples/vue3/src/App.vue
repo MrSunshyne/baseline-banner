@@ -19,6 +19,9 @@
         <BaselineChecker feature-name="flexbox" />
         <BaselineBanner feature-name="flexbox" />
         <BaselineBannerMDN feature-name="flexbox" />
+      
+        <BaselineBannerWebDev feature-name="flexbox" />
+        
         <BaselineChecker feature-name="if" />
         <BaselineBannerMDN feature-name="if" />
         <BaselineChecker feature-name="popover" />
@@ -95,7 +98,7 @@
 </template>
 
 <script setup lang="ts">
-import { BaselineChecker, BaselineBanner, BaselineBannerMDN } from '@baseline-banner/vue'
+import { BaselineChecker, BaselineBanner, BaselineBannerMDN, BaselineBannerWebDev } from '@baseline-banner/vue'
 import InteractiveExamples from './components/InteractiveExamples.vue'
 import ReactiveExample from './components/ReactiveExample.vue'
 </script>
