@@ -45,6 +45,8 @@ export interface BaselineStatus {
   }
 }
 
+export const featuredBrowsers: BrowserIdentifier[] = ['chrome', 'edge', 'firefox', 'safari']
+
 /**
  * Fetch baseline compatibility data for a web feature
  */
@@ -83,7 +85,7 @@ export function getBaselineStatus(feature: WebPlatformFeature | null): BaselineS
     case 'widely':
       return {
         message: 'Widely available',
-        className: 'high',
+        className: 'high widely',
         isAvailable: true,
         dates: {
           availableSince: feature.baseline?.low_date,
@@ -93,7 +95,7 @@ export function getBaselineStatus(feature: WebPlatformFeature | null): BaselineS
     case 'newly':
       return {
         message: 'Newly available',
-        className: 'low',
+        className: 'low newly',
         isAvailable: true,
         dates: {
           availableSince: feature.baseline?.low_date,

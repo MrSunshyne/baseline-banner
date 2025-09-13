@@ -18,35 +18,50 @@
 
       <section class="preview">
         <div class="theme-column">
-        <h2>Default Theme</h2>
-        <PlaygroundBaselineBanner 
-          :feature-name="'font-size-adjust'" 
-          :show-debug="showDebug"
-        />
-        <PlaygroundBaselineBanner 
-          :feature-name="'if'" 
-          :show-debug="showDebug"
-        />
-        <PlaygroundBaselineBanner 
-          :feature-name="'grid'" 
-          :show-debug="showDebug"
-        />
-      </div>
-      <div class="theme-column"> 
-        <h2>Web Dev Theme</h2>
-        <PlaygroundBaselineBannerWebDev 
-          :feature-name="'font-size-adjust'" 
-          :show-debug="showDebug"
-        />
-        <PlaygroundBaselineBannerWebDev 
-          :feature-name="'if'" 
-          :show-debug="showDebug"
-        />
-        <PlaygroundBaselineBannerWebDev 
-          :feature-name="'grid'" 
-          :show-debug="showDebug"
-        />
-      </div>
+          <h2>Default Theme</h2>
+          <PlaygroundBaselineBanner 
+            :feature-name="'font-size-adjust'" 
+            :show-debug="showDebug"
+          />
+          <PlaygroundBaselineBanner 
+            :feature-name="'if'" 
+            :show-debug="showDebug"
+          />
+          <PlaygroundBaselineBanner 
+            :feature-name="'grid'" 
+            :show-debug="showDebug"
+          />
+        </div>
+        <div class="theme-column"> 
+          <h2>Web Dev Theme</h2>
+          <PlaygroundBaselineBannerWebDev 
+            :feature-name="'font-size-adjust'" 
+            :show-debug="showDebug"
+          />
+          <PlaygroundBaselineBannerWebDev 
+            :feature-name="'if'" 
+            :show-debug="showDebug"
+          />
+          <PlaygroundBaselineBannerWebDev 
+            :feature-name="'grid'" 
+            :show-debug="showDebug"
+          />
+        </div>
+        <div class="theme-column"> 
+          <h2>MDN Theme</h2>
+          <PlaygroundBaselineBannerMdn 
+            :feature-name="'font-size-adjust'" 
+            :show-debug="showDebug"
+          />
+          <PlaygroundBaselineBannerMdn 
+            :feature-name="'if'" 
+            :show-debug="showDebug"
+          />
+          <PlaygroundBaselineBannerMdn 
+            :feature-name="'grid'" 
+            :show-debug="showDebug"
+          />
+        </div>
       </section>
     </main>
   </div>
@@ -54,8 +69,9 @@
 
 <script setup lang="ts">
 import { ref, watch, onMounted } from 'vue'
-import PlaygroundBaselineBanner from './components/PlaygroundBaselineBanner.vue'
-import PlaygroundBaselineBannerWebDev from './components/PlaygroundBaselineBannerWebDev.vue'
+import PlaygroundBaselineBanner from './components/default/PlaygroundBaselineBanner.vue'
+import PlaygroundBaselineBannerWebDev from './components/webdev/PlaygroundBaselineBanner.vue'
+import PlaygroundBaselineBannerMdn from './components/mdn/PlaygroundBaselineBanner.vue'
 
 const showDebug = ref(false)
 const isDarkMode = ref(false)

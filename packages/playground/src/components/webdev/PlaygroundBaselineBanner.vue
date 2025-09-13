@@ -19,10 +19,10 @@
             </div>
           </div>
           <div class="feature-browsers-support" v-if="feature.browser_implementations">
-            <template v-for="browser in Object.keys(feature.browser_implementations)"> 
+            <template v-for="browser in featuredBrowsers"> 
               <BrowserStatus 
                 :browser-name="browser as BrowserIdentifier" 
-                :browser-status="feature.browser_implementations[browser as keyof typeof feature.browser_implementations].status" 
+                :browser-status="feature.browser_implementations[browser as keyof typeof feature.browser_implementations]?.status || 'not_available'" 
                 :baseline-status="feature.baseline?.status"
               />
             </template>
@@ -59,6 +59,7 @@ import {
   definitions,
   getBaselineStatus,
   formatDate,
+  featuredBrowsers,
   type WebFeatureId,
   type WebPlatformFeature,
   type BrowserIdentifier
