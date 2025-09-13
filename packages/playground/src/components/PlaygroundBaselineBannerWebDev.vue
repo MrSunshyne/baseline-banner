@@ -12,7 +12,7 @@
           <h3 class="feature-name">{{ feature.name }}</h3>
         </div>
         
-        <p v-if="feature.baseline?.status" class="feature-description-container">
+        <div v-if="feature.baseline?.status" class="feature-description-container">
           <div>
             <div class="baseline-badge">
               <BaselineBadge :year="baselineStatus.dates?.year" :label="baselineStatus.message" :status="feature.baseline?.status"/>
@@ -27,7 +27,7 @@
               />
             </template>
           </div>
-        </p>
+        </div>
 
         <div class="feature-description" v-if="description">
             {{ description }}
