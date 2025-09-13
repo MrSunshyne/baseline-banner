@@ -17,6 +17,7 @@
         </p>
         
         <BaselineChecker feature-name="flexbox" />
+        <BaselineBanner feature-name="flexbox" />
         <BaselineChecker feature-name="if" />
         <BaselineChecker feature-name="popover" />
         <BaselineChecker feature-name="abs-sign" />
@@ -38,6 +39,7 @@
             <h3>CSS Container Queries</h3>
             <p>Responsive design based on container size instead of viewport.</p>
             <BaselineChecker feature-name="container-queries" />
+            <BaselineBanner feature-name="container-queries" />
           </div>
           
           <div class="feature-card">
@@ -91,7 +93,7 @@
 </template>
 
 <script setup lang="ts">
-import { BaselineChecker } from '@baseline-banner/vue'
+import { BaselineChecker, BaselineBanner } from '@baseline-banner/vue'
 import InteractiveExamples from './components/InteractiveExamples.vue'
 import ReactiveExample from './components/ReactiveExample.vue'
 </script>
