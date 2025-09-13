@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "declarationMap": true,
+    "outDir": "./dist"
+  },
+  "include": ["src/index.ts", "src/BaselineChecker.vue"],
+  "exclude": ["src/__tests__", "**/*.test.*", "**/*.spec.*"]
+}

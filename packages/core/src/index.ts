@@ -2,7 +2,8 @@
 export { 
   fetchBaselineData, 
   getBaselineStatus, 
-  formatDate 
+  formatDate,
+  featuredBrowsers,
 } from './api.js'
 
 export type { 
@@ -13,5 +14,11 @@ export type {
   BaselineInfo,
   WebPlatformFeature,
   APIResponse,
-  BaselineStatus
+  BaselineStatus,
+  BrowserImplementation,
+  BrowserIdentifier,
 } from './api.js'
+
+export {
+  definitions
+} from './definitions.js'

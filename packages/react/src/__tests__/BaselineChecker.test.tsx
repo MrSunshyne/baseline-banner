@@ -87,7 +87,7 @@ describe('BaselineChecker (React)', () => {
   it('should render error state when feature not found', async () => {
     mockFetchBaselineData.mockResolvedValue(null)
 
-    render(<BaselineChecker featureName="non-existent" />)
+    render(<BaselineChecker featureName={"non-existent" as any} />)
 
     await waitFor(() => {
       expect(screen.getByText('Feature "non-existent" not found')).toBeTruthy()

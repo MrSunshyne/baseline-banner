@@ -1,0 +1,119 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* Light mode colors (default) */
+  --bg-color: #ffffff;
+  --text-color: #213547;
+  --text-color-muted: #64748b;
+  --heading-color: #2563eb;
+  --heading-secondary-color: #1f2937;
+  --link-hover-color: #747bff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Automatic dark mode based on system preference */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #272727;
+    --text-color: rgba(255, 255, 255, 0.87);
+    --text-color-muted: #a1a1aa;
+    --heading-color: #60a5fa;
+    --heading-secondary-color: #c3c3c3;
+    --link-hover-color: #a78bfa;
+  }
+}
+
+html[data-theme="light"] {
+  --bg-color: #ffffff;
+  --text-color: #213547;
+  --text-color-muted: #64748b;
+  --heading-color: #2563eb;
+  --heading-secondary-color: #1f2937;
+  --link-hover-color: #747bff;
+}
+
+html[data-theme="dark"] {
+  --bg-color: #272727;
+  --text-color: rgba(255, 255, 255, 0.87);
+  --text-color-muted: #a1a1aa;
+  --heading-color: #60a5fa;
+  --heading-secondary-color: #c3c3c3;
+  --link-hover-color: #a78bfa;
+}
+
+html {
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+header h1 {
+  color: var(--heading-color);
+  margin-bottom: 0.5rem;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+.controls {
+  padding: 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.controls label {
+  color: var(--text-color);
+  margin-right: 0.5rem;
+}
+
+.preview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px;
+  padding: 60px;
+}
+
+.preview h2 {
+  color: var(--heading-secondary-color);
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+a:hover {
+  color: var(--link-hover-color);
+}
+

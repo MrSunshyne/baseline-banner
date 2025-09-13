@@ -1,38 +1,35 @@
 {
   "compilerOptions": {
     "target": "ES2020",
+    "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
-    
+
     /* Bundler mode */
     "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",
-    "allowSyntheticDefaultImports": true,
-    
+    "noEmit": true,
+    "jsx": "preserve",
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    
-    /* Declarations */
-    "declaration": true,
-    "declarationMap": true,
-    "outDir": "./dist",
-    "emitDeclarationOnly": false,
-    
-    /* Path mapping for workspace packages - for IDE only, build uses node_modules */
+
+    /* Path mapping */
     "baseUrl": ".",
     "paths": {
+      "@/*": ["./src/*"],
       "@baseline-banner/core": ["../core/dist/index.d.ts"],
       "@baseline-banner/core/*": ["../core/dist/*"],
       "@baseline-banner/styles": ["../styles/dist/index.css"],
       "@baseline-banner/styles/*": ["../styles/dist/*"]
     }
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
