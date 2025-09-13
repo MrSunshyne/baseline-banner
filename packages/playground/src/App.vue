@@ -10,6 +10,10 @@
           <label for="debug">Show debug information:</label>
           <input id="debug" type="checkbox" v-model="showDebug" />
         </div>
+        <div>
+          <label for="dark-mode">Dark mode:</label>
+          <input id="dark-mode" type="checkbox" v-model="isDarkMode" />
+        </div>
       </section>
 
       <section class="preview">
@@ -49,10 +53,30 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import PlaygroundBaselineBanner from './components/PlaygroundBaselineBanner.vue'
 import PlaygroundBaselineBannerWebDev from './components/PlaygroundBaselineBannerWebDev.vue'
 
 const showDebug = ref(false)
+const isDarkMode = ref(false)
+
+// Update document color-scheme when dark mode changes
+const updateColorScheme = (dark: boolean) => {
+  const html = document.documentElement
+  
+  // Set the color-scheme for native browser elements
+  html.style.colorScheme = dark ? 'dark' : 'light'
+  
+  // Set data attribute to override media query
+  html.setAttribute('data-theme', dark ? 'dark' : 'light')
+}
+
+// Watch for changes and update color scheme
+watch(isDarkMode, updateColorScheme, { immediate: true })
+
+// Set initial color scheme on mount
+onMounted(() => {
+  updateColorScheme(isDarkMode.value)
+})
 </script>
 
