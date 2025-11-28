@@ -1,6 +1,6 @@
 {
   "name": "baseline-banner-vue3-example",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "private": true,
   "description": "Vue 3 example using @baseline-banner/vue with script setup",

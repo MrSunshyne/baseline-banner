@@ -1,6 +1,6 @@
 {
   "name": "@baseline-banner/playground",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Theme development playground for baseline-banner components",
   "type": "module",
   "private": true,
