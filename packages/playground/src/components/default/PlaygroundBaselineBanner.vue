@@ -59,9 +59,6 @@ const error = ref<Error | null>(null)
 // Computed baseline status
 const baselineStatus = computed(() => getBaselineStatus(feature.value))
 
-// Theme class computation
-const themeClass = computed(() => `theme-${props.theme}`)
-
 // Fetch data when featureName changes
 watchEffect(async () => {
   pending.value = true

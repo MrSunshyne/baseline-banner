@@ -19,10 +19,10 @@
             </div>
           </div>
           <div class="feature-browsers-support" v-if="feature.browser_implementations">
-            <template v-for="browser in featuredBrowsers"> 
+            <template v-for="browser in featuredBrowsers" :key="browser"> 
               <BrowserStatus 
-                :browser-name="browser as BrowserIdentifier" 
-                :browser-status="feature.browser_implementations[browser as keyof typeof feature.browser_implementations]?.status || 'not_available'" 
+                :browser-name="browser" 
+                :browser-status="(feature.browser_implementations[browser]?.status || 'not_available') as 'no_data' | 'available' | 'not_available'" 
                 :baseline-status="feature.baseline?.status"
               />
             </template>
@@ -61,8 +61,7 @@ import {
   formatDate,
   featuredBrowsers,
   type WebFeatureId,
-  type WebPlatformFeature,
-  type BrowserIdentifier
+  type WebPlatformFeature
 } from '@baseline-banner/core'
 import BrowserStatus from './BrowserStatus.vue'
 import BaselineBadge from './BaselineBadge.vue'
