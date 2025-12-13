@@ -46,6 +46,6 @@
     "vite": "^6.0.0",
     "vite-plugin-dts": "^4.3.0",
     "vitest": "^2.1.0",
-    "web-features": "^2.47.0"
+    "web-features": "^3.11.1"
   }
 }
