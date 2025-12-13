@@ -131,8 +131,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.9(@types/node@22.18.1)(@vitest/ui@3.2.4(vitest@2.1.9))(happy-dom@18.0.1)(jsdom@26.1.0)
       web-features:
-        specifier: ^2.47.0
-        version: 2.47.0
+        specifier: ^3.11.1
+        version: 3.11.1
 
   packages/playground:
     dependencies:
@@ -2447,8 +2447,8 @@ packages:
     resolution: {integrity: sha512-o8qghlI8NZHU1lLPrpi2+Uq7abh4GGPpYANlalzWxyWteJOCsr/P+oPBA49TOLu5FTZO4d3F9MnWJfiMo4BkmA==}
     engines: {node: '>=18'}
 
-  web-features@2.47.0:
-    resolution: {integrity: sha512-f25lELS+99aWUMICdYI8zVNe2Lawbsia0U8uGkicwz8OgZVBL7gXlE9DyR3fNEEm7NsVS0YHCrAvBydiHMhZjQ==}
+  web-features@3.11.1:
+    resolution: {integrity: sha512-M6KxoDub4rqacaYzrrm95L5/8gGGAqvRC+E4jojolYtdYfCgTg710Ghr4smq186JnpO8cghw9Wq8IXOH4Oq+uQ==}
 
   webidl-conversions@7.0.0:
     resolution: {integrity: sha512-VwddBukDzu71offAQR975unBIGqfKZpM+8ZX6ySk8nYhVoo5CYaZyzt3YBvYtRtO+aoGlqxPg/B87NGVZ/fu6g==}
@@ -4836,7 +4836,7 @@ snapshots:
     dependencies:
       xml-name-validator: 5.0.0
 
-  web-features@2.47.0: {}
+  web-features@3.11.1: {}
 
   webidl-conversions@7.0.0: {}
 
