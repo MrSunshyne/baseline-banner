@@ -1,6 +1,6 @@
 {
   "name": "@baseline-banner/react",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React component for checking CSS feature baseline compatibility",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

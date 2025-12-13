@@ -1,5 +1,11 @@
 # baseline-banner-vue3-example
 
+## 1.0.2
+
+### Patch Changes
+
+- @baseline-banner/vue@1.1.1
+
 ## 1.0.1
 
 ### Patch Changes

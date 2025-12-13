@@ -1,5 +1,11 @@
 # @baseline-banner/core
 
+## 1.0.2
+
+### Patch Changes
+
+- e967ee8: Update the web-features dependency to sync with newly supported featureNames
+
 ## 1.0.1
 
 ### Patch Changes
